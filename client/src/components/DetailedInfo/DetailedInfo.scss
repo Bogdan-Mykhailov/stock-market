@@ -1,0 +1,39 @@
+.detailedList {
+  opacity: 0;
+  position: absolute;
+  top: 57vh;
+  left: calc(50vw - 300px);
+
+  &__listItem {
+    font-size: 15px;
+    margin-top: 5px;
+    color: white;
+  }
+
+  &__text {
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 10px;
+    color: white;
+  }
+}
+
+hr {
+  width: 100%;
+  height: .5px;
+}
+
+.detailedListActive {
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #53596e;
+  box-shadow: 2px 2px 8px rgba(109, 93, 252, 0.5);
+  width: 600px;
+  border-radius: 10px;
+  padding: 20px;
+  position: absolute;
+  top: 57vh;
+  left: calc(50vw - 300px);
+  z-index: 10;
+}

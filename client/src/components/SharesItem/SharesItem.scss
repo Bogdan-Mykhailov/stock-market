@@ -1,0 +1,70 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  height: 150px;
+  width: 160px;
+  border-radius: 10px;
+  background-color: #e4ebf5;
+  box-shadow: 2px 2px 8px #c0c8dc, -3px -3px 10px #fff;
+  position: relative;
+
+  &__title {
+    width: 45%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    padding: 2px;
+  }
+
+  &__company {
+    margin: 5px 0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &__price {
+    font-weight: 500;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    font-size: 15px;
+    position: absolute;
+    top: 90px;
+    left: 10px;
+  }
+
+  &__percent {
+    width: 70px;
+    padding: 3px;
+    text-align: center;
+    background-color: #53596e;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    position: absolute;
+    top: 115px;
+    left: 10px;
+  }
+
+  &__icon {
+    height: 20px;
+    width: 20px;
+    filter: brightness(0) saturate(100%) invert(34%) sepia(16%) saturate(600%) hue-rotate(189deg) brightness(93%) contrast(88%);
+    transition: all 0.5s ease;
+    position: absolute;
+    top: 117px;
+    right: 10px;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+      filter: brightness(0) saturate(100%) invert(39%) sepia(49%) saturate(3817%) hue-rotate(229deg) brightness(96%) contrast(106%);
+      cursor: pointer;
+    }
+  }
+}
