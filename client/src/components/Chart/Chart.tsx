@@ -23,7 +23,7 @@ export const Chart: FC<Props> = ({data, type}) => {
     : data.map(({price}) => price);
 
   const dataset2 = type !== CharType.MAIN
-    ? data.map(({dividend}) => dividend)
+    ? data.map((share) => share.yield)
     : data.map(({change}) => change);
 
   const dataset1Label = type !== CharType.MAIN
@@ -31,7 +31,7 @@ export const Chart: FC<Props> = ({data, type}) => {
     : 'Price';
 
   const dataset2Label = type !== CharType.MAIN
-    ? "Dividend"
+    ? "Yield"
     : 'Change';
 
   return (
