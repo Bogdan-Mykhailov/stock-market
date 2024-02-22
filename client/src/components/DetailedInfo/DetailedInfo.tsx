@@ -2,8 +2,8 @@ import {FC, useEffect, useState} from "react";
 import {Share} from "../../types/Share.ts";
 import './DetailedInfo.scss';
 import {formatDateAndTime} from "../../utils/helpers.ts";
-import {Chart} from "../Chart/Chart.tsx";
 import {CharType} from "../../types/types.ts";
+import {MainChart} from "../Chart";
 
 interface Props {
   share: Share;
@@ -44,7 +44,7 @@ export const DetailedInfo: FC<Props> = ({share}) => {
       <ul className='detailedList'>
         <li className='detailedList__listItem'>
           Company name:
-          <span className='detailedList__text'>{name}</span>
+          <span className='detailedList__title'>{name}</span>
         </li>
         <hr/>
         <li className='detailedList__listItem'>
@@ -81,7 +81,10 @@ export const DetailedInfo: FC<Props> = ({share}) => {
         </li>
         <hr/>
         <li>
-          <Chart data={currentData} type={CharType.DETAILED}/>
+          <h2 className='detailedList__table-itle'>Dividend & Yield Payout Ratio</h2>
+        </li>
+        <li>
+          <MainChart data={currentData} type={CharType.DETAILED}/>
         </li>
       </ul>
     </>

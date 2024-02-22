@@ -1,9 +1,10 @@
 import express from 'express'
 import http from 'http'
-import { Server as SocketServer } from 'socket.io';
+import { Socket, Server as SocketServer} from 'socket.io';
 import cors from 'cors'
-import { fileURLToPath, URL } from 'url';
-import { dirname } from 'path';
+import {fileURLToPath} from 'url';
+import {dirname} from 'path';
+import {DefaultEventsMap} from 'socket.io/dist/typed-events';
 
 const FETCH_INTERVAL = 5000;
 const PORT = 4000;
@@ -30,7 +31,18 @@ function utcDate() {
   return new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
 }
 
-function getQuotes(socket) {
+function getQuotes(socket: {
+  emit: (arg0: string, arg1: {
+    ticker: string;
+    exchange: string;
+    price: string;
+    change: string;
+    change_percent: string;
+    dividend: string;
+    yield: string;
+    last_trade_time: Date;
+  }[]) => void;
+}) {
 
   const quotes = tickers.map(ticker => ({
     ticker,
@@ -46,7 +58,7 @@ function getQuotes(socket) {
   socket.emit('ticker', quotes);
 }
 
-function trackTickers(socket) {
+function trackTickers(socket: Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>) {
   // run the first time immediately
   getQuotes(socket);
 
@@ -72,6 +84,22 @@ const socketServer = new SocketServer(server, {
 
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html');
+});
+
+let activeSessions: number = 0;
+
+socketServer.on('connection', (socket) => {
+  activeSessions += 1;
+  socketServer.emit('sessionCountUpdate', activeSessions);
+
+  socket.on('disconnect', () => {
+    activeSessions -= 1;
+    socketServer.emit('sessionCountUpdate', activeSessions);
+  });
+
+  socket.on('getSessionCount', () => {
+    socketServer.to(socket.id).emit('sessionCountUpdate', activeSessions);
+  });
 });
 
 socketServer.on('connection', (socket) => {

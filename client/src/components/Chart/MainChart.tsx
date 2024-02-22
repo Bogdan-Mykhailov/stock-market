@@ -13,25 +13,25 @@ interface Props {
   type: CharType;
 }
 
-export const Chart: FC<Props> = ({data, type}) => {
+export const MainChart: FC<Props> = ({data, type}) => {
   const labels = type !== CharType.MAIN
     ? data.map(({last_trade_time}) => formatDateAndTime(last_trade_time))
     : data.map(({name}) => name);
 
   const dataset1 = type !== CharType.MAIN
-    ? data.map(({change_percent}) => change_percent)
+    ? data.map((share) => share.yield)
     : data.map(({price}) => price);
 
   const dataset2 = type !== CharType.MAIN
-    ? data.map((share) => share.yield)
+    ? data.map(({dividend}) => dividend)
     : data.map(({change}) => change);
 
   const dataset1Label = type !== CharType.MAIN
-    ? 'Change Percent'
+    ? 'Yield'
     : 'Price';
 
   const dataset2Label = type !== CharType.MAIN
-    ? "Yield"
+    ? "Dividend"
     : 'Change';
 
   return (

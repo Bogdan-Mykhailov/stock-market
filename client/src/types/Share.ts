@@ -1,6 +1,7 @@
 export interface UpdateData {
   name: string;
   color: string;
+  active: boolean;
 }
 
 export interface Share extends UpdateData{

@@ -13,11 +13,23 @@
     color: black;
   }
 
+  &__title{
+    font-size: 18px;
+    margin-left: 10px;
+    font-weight: 600;
+  }
+
   &__text {
     font-size: 18px;
     font-weight: 500;
     margin-left: 10px;
     color: black;
+  }
+
+
+  &__table-itle {
+    text-align: center;
+    margin: 10px 0;
   }
 }
 

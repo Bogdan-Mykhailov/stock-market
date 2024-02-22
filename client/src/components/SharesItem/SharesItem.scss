@@ -9,6 +9,10 @@
   box-shadow: 2px 2px 8px #c0c8dc, -3px -3px 10px #fff;
   position: relative;
 
+  &__inactive {
+    opacity: .5;
+  }
+
   &__title {
     width: 45%;
     border-radius: 5px;
@@ -19,6 +23,13 @@
     font-weight: bold;
     color: white;
     padding: 2px;
+  }
+
+  &__toggle-icon {
+    position: absolute;
+    right: 10px;
+    width: 24px;
+    cursor: pointer;
   }
 
   &__company {
