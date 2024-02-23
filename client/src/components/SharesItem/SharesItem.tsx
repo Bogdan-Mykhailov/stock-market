@@ -3,8 +3,7 @@ import './SharesItem.scss'
 import info from "../../assets/info.png";
 import {Share} from "../../types/Share.ts";
 import {useModal} from "../../hooks/useModal.ts";
-import toggleOn from '../../assets/toggleOn.svg';
-import toggleOff from '../../assets/toggleOff.svg';
+import xmark from '../../assets/xmark.svg';
 import {DetailedInfo} from "../DetailedInfo";
 import {Modal} from "../Modal";
 
@@ -39,7 +38,7 @@ export const SharesItem: FC<Props> = ({share, onDeleteTicker}) => {
         </li>
         <img
           className='list__toggle-icon'
-          src={active ? toggleOn : toggleOff}
+          src={xmark}
           onClick={handleDeleteTicker}
           alt='Toggle icon'
         />
